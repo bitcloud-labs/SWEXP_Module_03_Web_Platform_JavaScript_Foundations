@@ -11,7 +11,7 @@
     },
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
-  "postCreateCommand": "echo '\\n=== Forge SWEXP environment ready ==='; git --version; node --version 2>/dev/null; echo 'Open README.md, then Lesson_00.md to begin.'",
+  "postCreateCommand": "npm install && echo '\\n=== Forge SWEXP environment ready ==='; git --version; node --version 2>/dev/null; echo 'Open README.md, then pick an exercise under labs/ and run: npm test'",
   "customizations": {
     "vscode": {
       "extensions": [
