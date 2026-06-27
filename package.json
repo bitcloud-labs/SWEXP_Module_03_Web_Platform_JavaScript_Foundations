@@ -1,0 +1,16 @@
+{
+  "name": "swexp-module-03-web-platform",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Forge SWEXP Module 03 — interactive JavaScript foundations exercises (clone, implement, npm test).",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "grade": "node scripts/grade.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.1",
+    "vitest": "^2.1.8"
+  }
+}

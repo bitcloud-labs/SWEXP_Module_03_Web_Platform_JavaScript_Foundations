@@ -1,79 +1,67 @@
-# SWEXP Module 03 — Web Platform & JavaScript Foundations
+# SWEXP Module 03 — Web Platform: JavaScript Foundations · Starter Workspace
 
-**Theme:** Understanding the platform you build on.
+This repo is your **work-along workspace** for Module 03. The lessons live in the LMS; here you do the
+labs and the capstone: open an exercise, read its `README.md`, implement the `// TODO`s in its `src/`,
+run the tests, and submit.
 
-You are a **Frontend Engineer** on *Project Forge* (continuing from Module 02). This module turns the browser from a black box into an inspectable platform you can investigate, measure, and reason about. Across 13 ticket-driven lessons you learn how a page loads, how the DOM and CSS produce a layout, how the JavaScript runtime and event loop actually behave, how to make data and algorithms scale, how the network delivers your app, and how the browser paints pixels — then you integrate it all in a web-diagnostics capstone.
+> **The tests are the spec.** Each exercise's `tests/` describes exactly what your code must do — make
+> them pass without weakening the logic. No answer keys are shipped.
 
-The ethos, in every lesson: **investigate first, optimize second**, and **never claim a cause you haven't observed.**
+The module is about the web platform and the JavaScript runtime: how a page loads, the DOM and events,
+the JS runtime (coercion, closures, `this`), modern ES6+, the event loop and async, data-structure
+complexity, HTTP/REST, the network journey, and the rendering pipeline. The lessons lean on browser
+DevTools; this workspace distills each lab's **autogradable core** — pure functions and DOM behaviour
+(via `jsdom`) you can assert deterministically — so you get red→green feedback while you learn.
 
-## How You Work Here
+## Quick start
 
-| Step | What it means |
-|------|---------------|
-| Pick up a ticket | Each lesson is an engineering ticket (`WEB-1010`, `PERF-4015`, …) with acceptance criteria |
-| Investigate first | Open the right instrument (DevTools panel, Node, curl) and gather evidence before changing code |
-| Localize the layer | Pin the problem to load / document / language / performance / network / rendering |
-| Fix the cause | Address the root cause, not the symptom |
-| Measure | Prove the result with before/after evidence |
-| Verify AI | Draft → verify-against-the-instruments → log |
-
-## Learning Outcomes
-
-By the end you will be able to:
-- Drive the browser's developer tools as investigation instruments.
-- Explain the critical rendering path and read a Network waterfall and load metrics.
-- Debug DOM/event/form bugs and repair responsive layouts from box-model evidence.
-- Reason about the JavaScript runtime (types, scope, closures, `this`) and write modern ES6+.
-- Explain the single-threaded event loop and convert callbacks to async/await without freezing the UI.
-- Choose data structures and algorithms that scale, and prove improvements by measurement.
-- Read HTTP exchanges, design RESTful calls, and trace the network journey from URL to first byte.
-- Explain the rendering pipeline and eliminate jank.
-- Integrate all of the above into an evidence-based diagnosis of a real web app.
-
-## Lesson Index
-
-| # | Lesson | Competency | Ticket |
-|---|--------|-----------|--------|
-| 0 | Welcome to the Frontend Engineering Team | Environment & Developer Tools | WEB-1000 |
-| 1 | Investigate How a Website Loads | Page Load & the Critical Rendering Path | WEB-1010 |
-| 2 | Debug a Broken Login Form | DOM, Events & Forms | DOM-2001 |
-| 3 | Repair a Broken Layout | CSS Layout | CSS-2010 |
-| 4 | Investigate the JavaScript Runtime | Runtime Fundamentals | JS-3001 |
-| 5 | Modernize the Codebase | Modern JavaScript (ES6+) | JS-3015 |
-| 6 | The Website Freezes | Async JavaScript & the Event Loop | JS-3030 |
-| 7 | Optimize Customer Data | Data Structures | PERF-4001 |
-| 8 | The Search Is Too Slow | Algorithms & Complexity | PERF-4015 |
-| 9 | Investigate the Network | HTTP & REST | NET-5001 |
-| 10 | The Website Cannot Be Found | Networking Fundamentals (DNS/TCP/IP) | NET-5015 |
-| 11 | Investigate the Browser Rendering Engine | Browser Rendering Engine | RENDER-6001 |
-| 12 | Project Forge Web Diagnostics Capstone | Integrated Web Diagnostics | FORGE-9100 |
-
-The module flows through phases: **Platform & Page Load** (0–1) → **Document & Presentation** (2–3) → **The JavaScript Language** (4–6) → **Performance: Data & Algorithms** (7–8) → **The Network** (9–10) → **Rendering** (11) → **Capstone** (12).
-
-## Repository Layout
-
-```
-.
-├── README.md                      # this file
-├── MODULE_SYLLABUS.md             # pacing, structure, deliverables
-├── LEARNER_GUIDE.md               # how to operate as a frontend engineer here
-├── INSTRUCTOR_GUIDE.md            # facilitation and assessment
-├── COMPETENCY_MATRIX.md           # lesson → competency → skills
-├── ASSESSMENT_RUBRIC.md           # grading weights and performance levels
-├── dashboard.html                 # interactive progress dashboard (open in a browser)
-├── Lesson_00.md … Lesson_12.md    # the 13 lessons
-├── labs/                          # hands-on labs (Node generators + browser pages)
-├── solutions/                     # worked solutions / answer keys
-├── resources/                     # DevTools, runtime, async, perf, HTTP, networking, rendering guides + templates
-├── assignments/                   # submission templates + capstone brief
-└── instructor-notes/              # per-lesson facilitation notes
+```bash
+npm install            # one time (already done in your LMS code-server workspace)
+npm test               # run every exercise's tests
+npm run grade          # your score + per-exercise breakdown (what CI reports)
 ```
 
-## Getting Started
+Run a single exercise while you work on it:
 
-1. Read `resources/devtools-guide.md` and get a browser+DevTools, Node, an editor, and a local static server working (Lesson 0 / `labs/lab-00-environment.md`).
-2. Start your engineering notebook from `resources/engineering-notebook-template.md`.
-3. Open `dashboard.html` in your browser to track progress through the lessons and phases.
-4. Open `Lesson_00.md` and pick up your first ticket. Keep `resources/debugging-playbook.md` and the cheatsheets open as you work.
+```bash
+npx vitest run labs/lab-04-js-runtime       # or any folder below
+npx vitest watch labs/lab-04-js-runtime     # re-run on save
+```
 
-**Always serve pages over `http://localhost`, not `file://`** — modules, fetch, and many browser APIs require it (`npx serve .` or `python3 -m http.server 8000`). The Node labs run anywhere `node` does.
+## Exercises
+
+| Exercise | Folder | You implement |
+| --- | --- | --- |
+| Lab 00 — Environment & DevTools | `labs/lab-00-environment` | `analyzeResource` — read a Network entry, classify render-blocking |
+| Lab 01 — How a website loads | `labs/lab-01-page-load` | `firstPaintBlockers` / `criticalPath` over a resource list |
+| Lab 02 — Debug a login form | `labs/lab-02-login-form` | `validate` + wire the form (jsdom: selector/event/preventDefault) |
+| Lab 03 — Repair a layout | `labs/lab-03-layout` | `auditLayout` — flag the four CSS box-model bugs |
+| Lab 04 — JS runtime | `labs/lab-04-js-runtime` | fix coercion / loop-capture / shared-state / `this` |
+| Lab 05 — Modernize the codebase | `labs/lab-05-modernize` | ES6+ utils, behaviour-preserving (`\|\|` vs `??` trap) |
+| Lab 06 — Async & the event loop | `labs/lab-06-async-eventloop` | `eventLoopOrder`; callbacks → `async/await`; `chunk` to yield |
+| Lab 07 — Optimize customer data | `labs/lab-07-data-structures` | `joinFast` (Map) + `dedupFast` (Set), O(n) |
+| Lab 08 — Search is too slow | `labs/lab-08-search` | `binarySearch` + `memoize` + `debounce` |
+| Lab 09 — HTTP & REST | `labs/lab-09-http-rest` | fix a `fetch` client that treats 4xx/5xx as success |
+| Lab 10 — DNS, TCP/IP journey | `labs/lab-10-dns-tcp` | `parseCurlTiming` + `attributeSlowness` to a layer |
+| Lab 11 — Rendering engine | `labs/lab-11-rendering` | `layoutTriggers` guard + batched read/write `scheduleUpdates` |
+| Capstone — Web Diagnostics | `assignments/capstone` | integrate the fixes into one diagnostics toolkit |
+
+Each folder is self-contained: a `README.md` (the brief), `src/` (starter code with `// TODO`s), and
+`tests/` (the spec). Reference cheatsheets are in [`resources/`](resources/).
+
+## How grading & submission work
+
+- Every exercise contributes behaviour tests (`*.test.js`), run in Node or — for DOM labs — `jsdom`.
+  `npm run grade` reports a per-exercise score.
+- **Submit** by committing your changes and pushing (or opening a pull request). The **Autograde** GitHub
+  Action runs the same grader, posts your score to the run summary, and comments it on any PR.
+- You're done when the score is **100%**.
+
+## The rules of this module
+
+- **Investigate first, optimize second** — read the instrument, localize the problem to the right layer,
+  fix the *cause*, prove the fix.
+- **Never claim a cause you haven't observed.** Where AI's confident explanation meets the evidence,
+  the evidence wins.
+- Fix from first principles — understand *why* (coercion, closures, the event loop, Big-O), don't
+  trial-and-error.
